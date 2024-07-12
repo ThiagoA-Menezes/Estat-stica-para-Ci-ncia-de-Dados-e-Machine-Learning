@@ -60,3 +60,37 @@ df_amostra_sistematica.shape
 # %%
 df_amostra_sistematica.head()
 # %%
+len(dataset) // 10
+# %%
+grupos = []
+id_grupo = 0 
+contagem = 0
+#não vai ter uma variável para controlar esse for, ela vai percorrer o dataset pela função iterrows
+for _ in dataset.iterrows():
+    grupos.append(id_grupo)
+    contagem += 1
+    if contagem > 3256:
+        contagem = 0
+        id_grupo += 1
+# %%
+print(np.unique(grupos))
+# %%
+# Return counts é usado para contagem dos valores dentro do dataset grupos
+np.unique(grupos, return_counts=True)
+
+# %%
+np.shape(grupos), dataset.shape
+# %%
+dataset['grupo'] = grupos
+# %%
+dataset.head()
+# %%
+dataset.tail()
+# %%
+random.randint(0, 9)
+# %%
+df_agrupamento = dataset[dataset['grupo'] == 7]
+df_agrupamento.shape
+# %%
+df_agrupamento['grupo'].value_counts()
+# %%
